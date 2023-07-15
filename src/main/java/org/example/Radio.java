@@ -1,49 +1,64 @@
 package org.example;
 
 public class Radio {
-    public int numberStation;
-    public int currentVolume;
+    private int currentVolume;          // текущая громкость
+    private int currentRadioStation;        // текущая радиостанция
 
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
 
-    public void reductionStation(){
-        if (numberStation > 9){
-            numberStation = numberStation - 1;
-        }
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
-    public void increaseStation(){
-        if (numberStation < 9){
-            numberStation = numberStation + 1;
-        }
-    }
-    public void setNumberStation(int newNumberStation){
-        if (newNumberStation < 0){
+
+    public void setCurrentRadioStation(int newCurrentRadioStation) {  // установка радиостанции
+        if (newCurrentRadioStation > 9) {
             return;
         }
-        if (newNumberStation > 9){
+        if (newCurrentRadioStation < 0) {
             return;
         }
-        numberStation = newNumberStation;
+        currentRadioStation = newCurrentRadioStation;
     }
-    public void increaseVolume() {
-        if (currentVolume < 100) {
+
+    public void setCurrentVolume(int newCurrentVolume) {
+//        if (newCurrentVolume > 10) {
+//            return;
+//        }
+//        if (newCurrentVolume < 0) {
+//            return;
+//        }
+        currentVolume = newCurrentVolume;
+    }
+
+
+    public void volumeUp() {                // увеличение громкости на 1
+        if (currentVolume < 10) {
             currentVolume = currentVolume + 1;
         }
     }
-    public void reductionVolume(){
-        if (currentVolume > 100){
+
+    public void volumeDown() {              // уменьшение громкости на 1
+        if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
         }
     }
-    public void setCurrentVolume(int newCurrentVolume){
-        if (newCurrentVolume < 0){
-            return;
+
+
+    public void next() {                // следующая радиостанция
+        if (currentRadioStation < 9) {
+            currentRadioStation = currentRadioStation + 1;
+        } else {
+            currentRadioStation = 0;
         }
-        if (newCurrentVolume > 100){
-            return;
-        }
-        currentVolume = newCurrentVolume;
     }
-    public int getCurrentVolume(){
-        return currentVolume;
+
+    public void prev() {                // предыдущая радиостанция
+        if (currentRadioStation > 0) {
+            currentRadioStation = currentRadioStation - 1;
+        } else {
+            currentRadioStation = 9;
+        }
     }
 }
